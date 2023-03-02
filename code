@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int sum = 0;
+            List<int> numbersToSum = new List<int>();
+            bool isWorking = true;
+            string userInput;
+            string exitCommand = "E";
+            string sumCommand = "S";
+
+            while (isWorking)
+            {
+                Console.WriteLine("Введите число, Выйти - E, Вывести сумму введённых чисел - S");
+                userInput = Console.ReadLine();
+
+                if (userInput == exitCommand)
+                {
+                    Console.WriteLine("До свидания!");
+                    isWorking = false;
+                }
+                else if (userInput == sumCommand)
+                {
+                    foreach (int number in numbersToSum)
+                    {
+                        sum += number;
+                    }
+                    Console.WriteLine("Сумма введённых чисел: " + sum);
+                }
+                else
+                {
+                    numbersToSum.Add(Convert.ToInt32(userInput));
+                    Console.WriteLine("Число " + userInput + " добавлено!");
+                }
+            }
+        }
+    }
+}
