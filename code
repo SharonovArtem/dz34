@@ -10,6 +10,7 @@ namespace ConsoleApp5
     {
         static void Main(string[] args)
         {
+            int correctInput = 0;
             int sum = 0;
             List<int> numbersToSum = new List<int>();
             bool isWorking = true;
@@ -19,7 +20,7 @@ namespace ConsoleApp5
 
             while (isWorking)
             {
-                Console.WriteLine("Введите число, Выйти - E, Вывести сумму введённых чисел - S");
+                Console.WriteLine("Введите число, Выйти - " + exitCommand + ", Вывести сумму введённых чисел - " + sumCommand);
                 userInput = Console.ReadLine();
 
                 if (userInput == exitCommand)
@@ -33,12 +34,17 @@ namespace ConsoleApp5
                     {
                         sum += number;
                     }
+
                     Console.WriteLine("Сумма введённых чисел: " + sum);
                 }
-                else
+                else if (int.TryParse(userInput, out correctInput))
                 {
                     numbersToSum.Add(Convert.ToInt32(userInput));
                     Console.WriteLine("Число " + userInput + " добавлено!");
+                }
+                else
+                {
+                    Console.WriteLine("Неизвестная команда");
                 }
             }
         }
