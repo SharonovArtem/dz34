@@ -23,30 +23,40 @@ namespace ConsoleApp5
                 Console.WriteLine("Введите число, Выйти - " + exitCommand + ", Вывести сумму введённых чисел - " + sumCommand);
                 userInput = Console.ReadLine();
 
-                if (userInput == exitCommand)
+                if (userInput.ToUpper() == exitCommand)
                 {
                     Console.WriteLine("До свидания!");
                     isWorking = false;
                 }
-                else if (userInput == sumCommand)
+                else if (userInput.ToUpper() == sumCommand)
                 {
-                    foreach (int number in numbersToSum)
-                    {
-                        sum += number;
-                    }
-
-                    Console.WriteLine("Сумма введённых чисел: " + sum);
+                    SumAllNumbers(ref sum, ref numbersToSum);
                 }
                 else if (int.TryParse(userInput, out correctInput))
                 {
-                    numbersToSum.Add(Convert.ToInt32(userInput));
-                    Console.WriteLine("Число " + userInput + " добавлено!");
+                    AddNumber(ref numbersToSum, ref userInput);
                 }
                 else
                 {
                     Console.WriteLine("Неизвестная команда");
                 }
             }
+        }
+
+        static void SumAllNumbers(ref int sum, ref List<int> numbersToSum)
+        {
+            foreach (int number in numbersToSum)
+            {
+                sum += number;
+            }
+
+            Console.WriteLine("Сумма введённых чисел: " + sum);
+        }
+
+        static void AddNumber(ref List<int> numbersToSum, ref string userInput)
+        {
+            numbersToSum.Add(Convert.ToInt32(userInput));
+            Console.WriteLine("Число " + userInput + " добавлено!");
         }
     }
 }
